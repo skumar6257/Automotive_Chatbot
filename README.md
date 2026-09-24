@@ -21,8 +21,8 @@ AutoTech Lab is a specialized Flask-based web application powered by Google's Ge
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/automotive-chatbot.git
-   cd automotive-chatbot
+   git clone https://github.com/skumar6257/Automotive_Chatbot.git
+   cd Automotive_Chatbot
    ```
 
 2. Set up a Python Virtual Environment:
