@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoTech LLM Hyperparameter Lab</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="brand">
+            <span class="icon">🚗</span>
+            <h1>AutoTech Lab</h1>
+        </div>
+        <p class="subtitle">Automotive Chatbot & Gemini Parameter Benchmark</p>
+    </header>
+
+    <main class="container">
+        <section class="instructions">
+            <p>Every submission sends your question to Gemini 3 times while testing parameter variations: <strong>Round
+                    1 (Temperature)</strong> &rarr; <strong>Round 2 (Top-K)</strong> &rarr; <strong>Round 3
+                    (Top-P)</strong>, then loops back.</p>
+        </section>
+
+        <form id="chat-form" class="input-form">
+            <input type="text" id="user-input"
+                placeholder="Ask an automotive question (e.g., 'What causes OBD-II code P0300 on a cold start?')..."
+                required autocomplete="off" />
+            <button type="submit" id="submit-btn">Diagnose & Compare</button>
+        </form>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <span>Running 3 parallel generations across active parameter values...</span>
+        </div>
+
+        <section id="results-container" class="results-area"></section>
+    </main>
+
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
