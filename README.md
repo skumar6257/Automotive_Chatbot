@@ -51,3 +51,17 @@ AutoTech Lab is a specialized Flask-based web application powered by Google's Ge
    python app.py
    ```
    Navigate to `http://localhost:5000` in your browser.
+
+   OR
+
+5. Run the application using Docker (Recommended):
+   First, build the Docker image:
+   ```bash
+   docker build -t auto-chatbot:v1 .
+   ```
+   
+   ```bash
+   docker run -d -p 5000:5000 --env-file .env --name chatbot-container auto-chatbot:v1
+   ```
+   Navigate to `http://localhost:5000` in your browser.
+

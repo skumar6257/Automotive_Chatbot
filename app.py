@@ -24,19 +24,19 @@ EXPERIMENT_ROUNDS = [
         "round_name": "Round 1: Temperature Variation (Determinism vs. Creativity)",
         "param_name": "temperature",
         "values": [0.0, 0.5, 1.0],
-        "base_config": {"top_k": 40, "top_p": 0.95,"max_output_tokens": 150}
+        "base_config": {"top_k": 40, "top_p": 0.95}
     },
     {
         "round_name": "Round 2: Top-K Variation (Token Candidate Filtering)",
         "param_name": "top_k",
         "values": [3, 5, 20],
-        "base_config": {"temperature": 0.7, "top_p": 0.95,"max_output_tokens": 150}
+        "base_config": {"temperature": 0.7, "top_p": 0.95}
     },
     {
         "round_name": "Round 3: Top-P Variation (Nucleus Sampling Threshold)",
         "param_name": "top_p",
         "values": [0.1, 0.6, 0.95],
-        "base_config": {"temperature": 0.8, "top_k": 40,"max_output_tokens": 150}
+        "base_config": {"temperature": 0.8, "top_k": 40}
     }
 ]
 
