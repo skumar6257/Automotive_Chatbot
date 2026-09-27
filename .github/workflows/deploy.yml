@@ -39,6 +39,8 @@ jobs:
 
       - name: Run Automated Tests
         run: pytest test_app.py
+        env:
+          GEMINI_API_KEY: "dummy_test_key_so_app_can_import"
       # -----------------------
 
       - name: Authenticate to Google Cloud
