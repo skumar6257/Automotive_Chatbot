@@ -38,9 +38,16 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Automated Tests
-        run: pytest test_app.py
+        run: pytest test_app.py --html=report.html
         env:
           GEMINI_API_KEY: "dummy_test_key_so_app_can_import"
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        if: always() # Uploads the report even if the tests fail
+        with:
+          name: pytest-html-report
+          path: report.html
       # -----------------------
 
       - name: Authenticate to Google Cloud

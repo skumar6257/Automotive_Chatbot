@@ -5,3 +5,5 @@ __pycache__/
 .git/
 .gitignore
 .github/
+report.html
+secret.txt
