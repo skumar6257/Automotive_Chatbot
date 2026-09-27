@@ -1,5 +1,7 @@
 # AutoTech Lab: Automotive Diagnostic Chatbot & LLM Parameter Benchmark
 
+![AutoTech Lab Interface](assets/AutoTechLab_UI.png)
+
 AutoTech Lab is a specialized Flask-based web application powered by Google's Gemini API. It serves a dual purpose: acting as an expert automotive diagnostic assistant, and functioning as a live sandbox to test and observe how different Large Language Model (LLM) hyperparameters affect AI responses.
 
 ## 🚀 Features
@@ -85,3 +87,13 @@ This project features a fully automated enterprise-grade CI/CD pipeline using **
 - **Artifact Registry:** Builds and pushes the Docker container securely.
 - **Cloud Run Deployment:** Deploys the image to Google Cloud Run (Serverless) using an API key securely injected via **Google Secret Manager**.
 - **Smoke Testing:** Performs an automated post-deployment `curl` ping to verify the live URL is healthy.
+
+## 🏗️ System Architecture
+
+```mermaid
+graph LR
+    A[User Browser] -->|HTTPS| B(Google Cloud Run)
+    B -->|Fetches Secret| C[(Secret Manager)]
+    B -->|API Request| D[Google Gemini API]
+    E[GitHub Actions] -->|CI/CD Push| B
+```

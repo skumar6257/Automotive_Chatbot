@@ -109,7 +109,7 @@ def chat():
                 "is_error": True
             })
 
-        time.sleep(1)
+        time.sleep(2)
 
     result_payload = {
         "query": user_prompt,
