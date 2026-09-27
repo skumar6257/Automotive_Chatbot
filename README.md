@@ -53,7 +53,7 @@ AutoTech Lab is a specialized Flask-based web application powered by Google's Ge
    python app.py
    ```
 
-   **Option A: Run using Docker (Recommended)**
+   **Option B: Run using Docker (Recommended)**
 
    Build the Docker image:
    ```bash
@@ -66,3 +66,22 @@ AutoTech Lab is a specialized Flask-based web application powered by Google's Ge
    ```
    Navigate to `http://localhost:5000` in your browser.
 
+## 🧪 Testing
+
+This project uses `pytest` and `unittest.mock` to perform automated unit tests without incurring Gemini API costs.
+
+To run the test suite locally:
+```bash
+pytest test_app.py -v
+```
+
+## ☁️ CI/CD & Deployment
+
+This project features a fully automated enterprise-grade CI/CD pipeline using **GitHub Actions**.
+
+- **Push to Main:** Triggers the `.github/workflows/deploy.yml` pipeline.
+- **Testing Gate:** Runs `pytest`. If tests fail, deployment is aborted.
+- **Security:** Uses **Workload Identity Federation (OIDC)** for keyless authentication with Google Cloud.
+- **Artifact Registry:** Builds and pushes the Docker container securely.
+- **Cloud Run Deployment:** Deploys the image to Google Cloud Run (Serverless) using an API key securely injected via **Google Secret Manager**.
+- **Smoke Testing:** Performs an automated post-deployment `curl` ping to verify the live URL is healthy.

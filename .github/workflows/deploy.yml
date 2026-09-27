@@ -28,6 +28,19 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # --- NEW TESTING GATE ---
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install dependencies and testing tools
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Automated Tests
+        run: pytest test_app.py
+      # -----------------------
+
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
@@ -46,9 +59,18 @@ jobs:
           docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Deploy to Cloud Run
+        id: deploy
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: '${{ env.SERVICE_NAME }}'
           region: '${{ env.REGION }}'
           image: '${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}'
           flags: '--port=5000 --set-secrets=GEMINI_API_KEY=gemini-api-key:latest --allow-unauthenticated'
+
+      - name: Post-Deployment Smoke Test
+        run: |
+          echo "Waiting for service to route traffic..."
+          sleep 10
+          echo "Pinging live URL: ${{ steps.deploy.outputs.url }}"
+          curl --fail --silent --show-error ${{ steps.deploy.outputs.url }} > /dev/null
+
